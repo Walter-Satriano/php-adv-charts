@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Lato', sans-serif;
+
+  user-select: none;
+  list-style: none;
+}
+
+.container {
+  width: 70vw;
+  /* height: 100vh; */
+  margin: auto;
+  padding: 50px 25px;
+  /* background: red; */
+}
