@@ -14,5 +14,12 @@
   /* height: 100vh; */
   margin: auto;
   padding: 50px 25px;
-  /* background: red; */
+}
+
+.step1 canvas {
+  margin-bottom: 100px;
+}
+
+.step2 canvas#line_graph_montly_sales2 {
+  margin-bottom: 50px;
 }
