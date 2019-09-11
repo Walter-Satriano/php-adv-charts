@@ -23,3 +23,7 @@
 .step2 canvas#line_graph_montly_sales2 {
   margin-bottom: 50px;
 }
+
+.step2 canvas#pie_graph_sales_by_agent {
+  margin-bottom: 100px;
+}
