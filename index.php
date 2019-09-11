@@ -25,8 +25,6 @@
 
     <!-- CSS: MY STYLE -->
     <link rel="stylesheet" href="style.css">
-    <!-- JS: MY SCRIPT -->
-    <script src="script.js" charset="utf-8"></script>
 
     <title>Advanced Dashboard Charts</title>
   </head>
@@ -34,12 +32,23 @@
 
     <div class="container">
 
+      <div class="step1">
+        <h1>STEP 1</h1>
+        <canvas id="line_graph_montly_sales"></canvas>
+      </div>
 
-      <canvas id="line_graph"></canvas>
+      <div class="step2">
+        <h1>STEP 2</h1>
+        <canvas id="line_graph_montly_sales2"></canvas>
+        <canvas id="pie_graph_sales_by_agent"></canvas>
+      </div>
+
 
     </div>
 
 
+    <!-- JS: MY SCRIPT -->
+    <script src="script.js" charset="utf-8"></script>
 
   </body>
 </html>
