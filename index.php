@@ -43,6 +43,14 @@
         <canvas id="pie_graph_sales_by_agent"></canvas>
       </div>
 
+      <div class="step3">
+        <h1>STEP 3</h1>
+        <!-- <canvas id="line_graph_montly_sales2"></canvas>
+        <canvas id="pie_graph_sales_by_agent"></canvas> -->
+        <canvas id="multiline_graph_team"></canvas>
+
+      </div>
+
 
     </div>
 
