@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-  getDataStep1();
-  getDataStep2();
-  getDataStep3();
+  $("#level_button").click(getDataStep3);
+  // getDataStep1();
+  // getDataStep2();
 
 
   //funzione per convertire la data in italiano
@@ -28,7 +28,7 @@ $(document).ready(function() {
         console.log("data1", data);
       },
       error: function() {
-        alert("errore!!!");
+        alert("errore in getDataStep1!!!");
       }
     });
   }
@@ -69,7 +69,7 @@ $(document).ready(function() {
         console.log("data2", data);
       },
       error: function() {
-        alert("errore!!!");
+        alert("errore in getDataStep2!!!");
       }
     });
   }
@@ -111,12 +111,14 @@ $(document).ready(function() {
         datasets: [{
           label: "# Vendite per Agente",
           data: salesByAgent,
+          borderColor: "rgb(0, 0, 0)",
           backgroundColor: [
             "rgb(255, 0, 0)",
             "rgb(255, 255, 0)",
             "rgb(0, 255, 0)",
             "rgb(0, 0, 255)"
-          ]
+          ],
+          borderWidth: 1,
         }]
       },
     });
@@ -126,54 +128,103 @@ $(document).ready(function() {
   //funzione per prendere i dati
   function getDataStep3() {
 
+    var level = $(".select_level").val();
+    console.log("level selected: ", level);
+
     $.ajax({
 
       url: "fulldb3.php",
       method: "GET",
+      data: {"level": level},
       success: function(data) {
 
-        printMultiLineGraph(data);
+
+        if(data[0]) {
+          printLineGraphStep3(data[0]);
+        }
+
+        if(data[1]) {
+          printPieGraphStep3(data[1]);
+        }
+
+        if(data[2]) {
+          printMultiLineGraph(data[2]);
+        }
+
         console.log("data3", data);
       },
       error: function() {
-        alert("errore!!!");
+        alert("errore in getDataStep3!!!");
       }
+    });
+  }
+
+  //funzione per stampare il grafico a linea
+  function printLineGraphStep3(data) {
+
+    var ctxLine = $('#line_graph_montly_sales3');
+    var lineGraph = new Chart(ctxLine, {
+      type: data.type,
+      data: {
+        labels: getMonths(),
+        datasets: [{
+          label: "Vendite",
+          data: data.data,
+          borderColor: "rgb(170, 0, 255)",
+          backgroundColor: "rgb(194, 194, 194, 0.2)"
+        }]
+      },
+    });
+  }
+
+  //funzione per stampare il grafico a torta
+  function printPieGraphStep3(data) {
+
+    var ctxPie = $("#pie_graph_sales_by_agent2");
+    var pieGraph = new Chart(ctxPie, {
+      type: data.type,
+      data: {
+        labels: Object.keys(data.data),
+        datasets: [{
+          label: "# Vendite per Agente",
+          data: Object.values(data.data),
+          borderColor: "rgb(0, 0, 0)",
+          backgroundColor: [
+            "rgb(255, 0, 0)",
+            "rgb(255, 255, 0)",
+            "rgb(0, 255, 0)",
+            "rgb(0, 0, 255)"
+          ],
+          borderWidth: 1,
+        }]
+      },
     });
   }
 
   //funzione per stampare il grafico multilinea
   function printMultiLineGraph(data) {
 
-    var monthsLabel = getMonths();
-    var typeGraph = data.team_efficiency.type;
-    var team = Object.keys(data.team_efficiency.data);
-    var efficiencytTeam1 = Object.values(data.team_efficiency.data.Team1);
-    var efficiencytTeam2 = Object.values(data.team_efficiency.data.Team2);
-    var efficiencytTeam3 = Object.values(data.team_efficiency.data.Team3);
-
-    console.log("team", team);
-
-    var ctxLine = $("#multiline_graph_team");
+    var ctxLine = $("#multi_line_graph_team");
     var lineGraph = new Chart(ctxLine, {
-      type: typeGraph,
+      type: data.type,
       data: {
-        labels: monthsLabel,
+        labels: getMonths(),
         datasets: [
           {
-            label: team[0],
-            data: efficiencytTeam1,
+            label: Object.keys(data.data)[0],
+            data: Object.values(data.data.Team1),
             backgroundColor: "rgb(194, 194, 194, 0.2)",
             borderColor: "rgb(0, 255, 0)"
           },
           {
-            label: team[1],
-            data: efficiencytTeam2,
+            label: Object.keys(data.data)[1],
+            data: Object.values(data.data.Team2),
             backgroundColor: "rgb(194, 194, 194, 0.3)",
             borderColor: "rgb(0, 0, 255)"
           },
           {
-            label: team[2],
-            data: efficiencytTeam3,
+            label: Object.keys(data.data)[2],
+            data: Object.values(data.data.Team3),
             backgroundColor: "rgb(194, 194, 194, 0.4)",
             borderColor: "rgb(255, 0, 0)"
           }
@@ -181,9 +232,6 @@ $(document).ready(function() {
       },
     });
   }
-
-
-
 
 
 });
