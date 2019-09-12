@@ -30,27 +30,33 @@
   </head>
   <body>
 
+    <div class="selection">
+      <select class="select_level" name="">
+        <option value="guest">guest</option>
+        <option value="employee">employee</option>
+        <option value="clevel">clevel</option>
+      </select>
+      <button id="level_button" type="button" name="button">VAI</button>
+    </div>
+
     <div class="container">
 
-      <div class="step1">
+      <!-- <div class="step1">
         <h1>STEP 1</h1>
         <canvas id="line_graph_montly_sales"></canvas>
-      </div>
+      </div> -->
 
-      <div class="step2">
+      <!-- <div class="step2">
         <h1>STEP 2</h1>
         <canvas id="line_graph_montly_sales2"></canvas>
         <canvas id="pie_graph_sales_by_agent"></canvas>
-      </div>
+      </div> -->
 
       <div class="step3">
-        <h1>STEP 3</h1>
-        <!-- <canvas id="line_graph_montly_sales2"></canvas>
-        <canvas id="pie_graph_sales_by_agent"></canvas> -->
-        <canvas id="multiline_graph_team"></canvas>
-
+        <canvas id="line_graph_montly_sales3"></canvas>
+        <canvas id="pie_graph_sales_by_agent2"></canvas>
+        <canvas id="multi_line_graph_team"></canvas>
       </div>
-
 
     </div>
 
