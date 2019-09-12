@@ -4,26 +4,23 @@
 
   include "database3.php";
 
-  // $level = $_GET["level"];
-  //
-  // $result = [];
-  //
-  // if ($level == "guest" && $data["access"] == "guest") {
-  //   $result[] = $data["fatturato"];
-  // }
-  //
-  // if ($level == "employee" && $data["access"] == "employee") {
-  //   $result[] = $data["fatturato"];
-  //   $result[] = $data["fatturato_by_agent"];
-  // }
-  //
-  // if ($level[] == "clevel" && $data["access"] == "clevel") {
-  //   $result[] = $data;
-  // }
+  $level = $_GET["level"];
 
+  $result = [];
 
+  if ($level == "guest") {
+    $result[] = $data["fatturato"];
 
-  echo json_encode($data);
+  } else if ($level == "employee") {
+    $result[] = $data["fatturato"];
+    $result[] = $data["fatturato_by_agent"];
 
+  } else if ($level == "clevel") {
+    $result[] = $data["fatturato"];
+    $result[] = $data["fatturato_by_agent"];
+    $result[] = $data["team_efficiency"];
+  }
+
+  echo json_encode($result);
 
 ?>
