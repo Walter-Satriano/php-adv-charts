@@ -27,3 +27,13 @@
 .step2 canvas#pie_graph_sales_by_agent {
   margin-bottom: 100px;
 }
+
+.step3 canvas#pie_graph_sales_by_agent2 {
+  margin: 70px 0;
+}
+
+.selection {
+  width: 70vw;
+  margin: auto;
+  padding: 50px 25px;
+}
